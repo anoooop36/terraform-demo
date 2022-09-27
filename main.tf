@@ -4,9 +4,13 @@ provider "aws" {
   region     = var.region
 }
 
+resource "aws_vpc" "vpcByTFE" {
+  cidr_block  = "10.0.0.0/16"
+}
+
 resource "aws_subnet" "subnetByTFE" {
-  vpc_id     = var.vpc_id
-  cidr_block = "10.0.16.0/24"
+  vpc_id     =  "${aws_vpc.vpcByTFE.id}"
+  cidr_block = "10.0.32.0/24"
 }
 
 resource "aws_network_interface" "nicByTFE" {
@@ -39,12 +43,6 @@ variable "ami_id" {
 variable "instance_type" {
   type    = string
   default = "t2.micro"
-}
-
-
-variable "vpc_id" {
-  type    = string
-  default = "vpc-047a546d367da52fc"
 }
 
 variable "instance_tag" {
