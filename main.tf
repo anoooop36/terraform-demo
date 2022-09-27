@@ -44,7 +44,7 @@ variable "instance_type" {
 
 variable "vpc_id" {
   type    = string
-  default = "vpc-0ee8ceb17cfd9e53b"
+  default = "vpc-047a546d367da52fc"
 }
 
 variable "instance_tag" {
